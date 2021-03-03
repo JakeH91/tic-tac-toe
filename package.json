@@ -9,12 +9,8 @@
     "typecheck": "tsc",
     "format": "npx prettier --write \"**/*.{js,jsx,json,ts,tsx}\"",
     "format:check": "npx prettier --check \"**/*.{js,jsx,json,ts,tsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\""
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run typecheck && npm run format:check && npm run lint"
-    }
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "prepare": "husky install"
   },
   "dependencies": {
     "expo": "~40.0.0",
