@@ -15,7 +15,7 @@
       "@contexts/*": ["src/contexts/*"],
       "@screens": ["src/screens"],
       "@utils": ["src/utils"],
-      "@assets/*": ["assets/*"],
+      "@assets/*": ["assets/*"]
     }
   }
 }

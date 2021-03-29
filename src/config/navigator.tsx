@@ -1,16 +1,16 @@
-import React, { ReactElement } from 'react'
-import {NavigationContainer } from '@react-navigation/native';
-import {createStackNavigator } from '@react-navigation/stack'
-import { Home, SinglePlayerGame } from '@screens';
+import React, { ReactElement } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { Home, SinglePlayerGame } from "@screens";
 
 export type StackNavigatorParams = {
-  Home: undefined,
+  Home: undefined;
   SinglePlayerGame: {
-    gameId: string
-  },
-}
+    gameId: string;
+  };
+};
 
-const Stack = createStackNavigator<StackNavigatorParams>()
+const Stack = createStackNavigator<StackNavigatorParams>();
 
 export default function Navigator(): ReactElement {
   return (
@@ -20,5 +20,5 @@ export default function Navigator(): ReactElement {
         <Stack.Screen name="SinglePlayerGame" component={SinglePlayerGame} />
       </Stack.Navigator>
     </NavigationContainer>
-  )
+  );
 }

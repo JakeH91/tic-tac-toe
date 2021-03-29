@@ -1,20 +1,22 @@
-import React, { ReactNode, ReactElement } from 'react'
-import { 
+import React, { ReactNode, ReactElement } from "react";
+import {
   useFonts,
   DeliusUnicase_400Regular,
-  DeliusUnicase_700Bold 
-} from '@expo-google-fonts/delius-unicase';
-import AppLoading from 'expo-app-loading'
+  DeliusUnicase_700Bold,
+} from "@expo-google-fonts/delius-unicase";
+import AppLoading from "expo-app-loading";
 
 type AppBootstrapProps = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
-export default function AppBootstrap({ children }: AppBootstrapProps): ReactElement {
-  const [ fontLoaded ] = useFonts({
+export default function AppBootstrap({
+  children,
+}: AppBootstrapProps): ReactElement {
+  const [fontLoaded] = useFonts({
     DeliusUnicase_400Regular,
-    DeliusUnicase_700Bold
-  })
+    DeliusUnicase_700Bold,
+  });
 
-  return fontLoaded ? <>{ children }</> : <AppLoading />
+  return fontLoaded ? <>{children}</> : <AppLoading />;
 }
