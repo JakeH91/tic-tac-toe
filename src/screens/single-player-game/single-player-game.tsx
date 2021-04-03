@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ReactElement } from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, Dimensions, View } from 'react-native';
 import styles from './single-player-game.styles';
-import { GradientBackground, Board } from '@components';
+import { GradientBackground, Board, Text, Button } from '@components';
 import {
   isEmpty,
   BoardState,
@@ -10,6 +10,8 @@ import {
   Cell,
   useSounds,
 } from '@utils';
+
+const SCREEN_WIDTH = Dimensions.get('screen').width;
 
 export default function Game(): ReactElement {
   const [boardState, setBoardState] = useState<BoardState>([
@@ -27,6 +29,11 @@ export default function Game(): ReactElement {
     Math.random() < 0.5 ? 'HUMAN' : 'BOT'
   );
   const [isHumanMaximising, setIsHumanMaximising] = useState<boolean>(true);
+  const [gamesCount, setGamesCount] = useState({
+    wins: 0,
+    draws: 0,
+    losses: 0,
+  });
   const playSound = useSounds();
   const gameResult = isTerminal(boardState);
 
@@ -60,20 +67,25 @@ export default function Game(): ReactElement {
     return 'DRAW';
   };
 
+  const newGame = () => {
+    setBoardState([null, null, null, null, null, null, null, null, null]);
+    setTurn(Math.random() < 0.5 ? 'HUMAN' : 'BOT');
+  };
+
   useEffect(() => {
     if (gameResult) {
       const winner = getWinner(gameResult.winner);
       if (winner === 'HUMAN') {
         playSound('win');
-        alert('You Won!');
+        setGamesCount({ ...gamesCount, wins: gamesCount.wins + 1 });
       }
       if (winner === 'BOT') {
         playSound('loss');
-        alert('You Lost!');
+        setGamesCount({ ...gamesCount, losses: gamesCount.losses + 1 });
       }
       if (winner === 'DRAW') {
         playSound('draw');
-        alert("It's a draw!");
+        setGamesCount({ ...gamesCount, draws: gamesCount.draws + 1 });
       }
     } else {
       if (turn === 'BOT') {
@@ -98,15 +110,47 @@ export default function Game(): ReactElement {
   return (
     <GradientBackground>
       <SafeAreaView style={styles.container}>
+        <View>
+          <Text style={styles.difficulty}>Difficulty: Hard</Text>
+          <View style={styles.results}>
+            <View style={styles.resultsBox}>
+              <Text style={styles.resultsTitle}>Wins</Text>
+              <Text style={styles.resultsCount}>{gamesCount.wins}</Text>
+            </View>
+            <View style={styles.resultsBox}>
+              <Text style={styles.resultsTitle}>Draws</Text>
+              <Text style={styles.resultsCount}>{gamesCount.draws}</Text>
+            </View>
+            <View style={styles.resultsBox}>
+              <Text style={styles.resultsTitle}>Losses</Text>
+              <Text style={styles.resultsCount}>{gamesCount.losses}</Text>
+            </View>
+          </View>
+        </View>
         <Board
           disabled={Boolean(isTerminal(boardState)) || turn !== 'HUMAN'}
           onCellPressed={(cell) => {
             handleOnCellPressed(cell);
           }}
           state={boardState}
-          size={300}
+          size={SCREEN_WIDTH - 60}
           gameResult={gameResult}
         />
+        {gameResult && (
+          <View style={styles.modal}>
+            <Text style={styles.modalText}>
+              {getWinner(gameResult.winner) === 'HUMAN' && 'You Won'}
+              {getWinner(gameResult.winner) === 'BOT' && 'You Lost'}
+              {getWinner(gameResult.winner) === 'DRAW' && "It's a Draw"}
+            </Text>
+            <Button
+              onPress={() => {
+                newGame();
+              }}
+              title="Play Again"
+            ></Button>
+          </View>
+        )}
       </SafeAreaView>
     </GradientBackground>
   );
