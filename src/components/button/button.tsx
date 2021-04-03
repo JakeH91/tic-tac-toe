@@ -1,7 +1,7 @@
-import React, { ReactElement } from "react";
-import { TouchableOpacity, TouchableOpacityProps } from "react-native";
-import Text from "../text/text";
-import styles from "./button.styles";
+import React, { ReactElement } from 'react';
+import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import Text from '../text/text';
+import styles from './button.styles';
 
 type ButtonProps = {
   title: string;

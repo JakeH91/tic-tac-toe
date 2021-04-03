@@ -1,11 +1,11 @@
-import React, { ReactElement, useRef, useEffect } from "react";
-import { View, StyleSheet, Animated } from "react-native";
-import { BoardResult } from "@utils";
+import React, { ReactElement, useRef, useEffect } from 'react';
+import { View, StyleSheet, Animated } from 'react-native';
+import { BoardResult } from '@utils';
 
 const style = StyleSheet.create({
   line: {
-    position: "absolute",
-    backgroundColor: "#f03",
+    position: 'absolute',
+    backgroundColor: '#f03',
   },
   vLine: {
     width: 2,
@@ -16,7 +16,7 @@ const style = StyleSheet.create({
   dLine: {
     width: 2,
     top: 0,
-    left: "50%",
+    left: '50%',
   },
 });
 
@@ -42,7 +42,7 @@ export default function BoardLine({
 
   return (
     <>
-      {gameResult && gameResult.column && gameResult.direction === "V" && (
+      {gameResult && gameResult.column && gameResult.direction === 'V' && (
         <Animated.View
           style={[
             style.line,
@@ -51,13 +51,13 @@ export default function BoardLine({
               left: `${33.3333 * gameResult.column - 16.6666}%`,
               height: animationRef.current.interpolate({
                 inputRange: [0, 1],
-                outputRange: ["0%", "100%"],
+                outputRange: ['0%', '100%'],
               }),
             },
           ]}
         ></Animated.View>
       )}
-      {gameResult && gameResult.row && gameResult.direction === "H" && (
+      {gameResult && gameResult.row && gameResult.direction === 'H' && (
         <Animated.View
           style={[
             style.line,
@@ -66,13 +66,13 @@ export default function BoardLine({
               top: `${33.3333 * gameResult.row - 16.6666}%`,
               width: animationRef.current.interpolate({
                 inputRange: [0, 1],
-                outputRange: ["0%", "100%"],
+                outputRange: ['0%', '100%'],
               }),
             },
           ]}
         ></Animated.View>
       )}
-      {gameResult && gameResult.diagonal && gameResult.direction === "D" && (
+      {gameResult && gameResult.diagonal && gameResult.direction === 'D' && (
         <Animated.View
           style={[
             style.line,
@@ -86,7 +86,7 @@ export default function BoardLine({
                   }),
                 },
                 {
-                  rotateZ: gameResult.diagonal === "MAIN" ? "-45deg" : "45deg",
+                  rotateZ: gameResult.diagonal === 'MAIN' ? '-45deg' : '45deg',
                 },
               ],
               height: animationRef.current.interpolate({

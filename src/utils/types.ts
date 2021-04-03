@@ -1,4 +1,4 @@
-export type Cell = "x" | "o" | null;
+export type Cell = 'x' | 'o' | null;
 
 export type BoardState = [Cell, Cell, Cell, Cell, Cell, Cell, Cell, Cell, Cell];
 
@@ -8,8 +8,8 @@ export type WinningRowOrColumn = 1 | 2 | 3 | undefined;
 
 export type BoardResult = {
   winner: Cell;
-  direction?: "V" | "H" | "D";
+  direction?: 'V' | 'H' | 'D';
   column?: 1 | 2 | 3;
   row?: 1 | 2 | 3;
-  diagonal?: "MAIN" | "COUNTER";
+  diagonal?: 'MAIN' | 'COUNTER';
 };

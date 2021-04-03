@@ -1,8 +1,8 @@
-import React, { ReactElement } from "react";
-import { View, TouchableOpacity } from "react-native";
-import Text from "../text/text";
-import { BoardState, BoardResult } from "@utils";
-import BoardLine from "./board-line";
+import React, { ReactElement } from 'react';
+import { View, TouchableOpacity } from 'react-native';
+import Text from '../text/text';
+import { BoardState, BoardResult } from '@utils';
+import BoardLine from './board-line';
 
 type BoardProps = {
   state: BoardState;
@@ -24,9 +24,9 @@ export default function Board({
       style={{
         width: size,
         height: size,
-        backgroundColor: "green",
-        flexDirection: "row",
-        flexWrap: "wrap",
+        backgroundColor: 'green',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
       }}
     >
       {state.map((cell, index) => {
@@ -35,12 +35,12 @@ export default function Board({
             onPress={() => onCellPressed && onCellPressed(index)}
             disabled={cell !== null || disabled}
             style={{
-              width: "33.33333%",
-              height: "33.33333%",
-              backgroundColor: "white",
+              width: '33.33333%',
+              height: '33.33333%',
+              backgroundColor: 'white',
               borderWidth: 1,
-              alignItems: "center",
-              justifyContent: "center",
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
             key={`cell-${index}`}
           >
@@ -57,7 +57,7 @@ export default function Board({
       {true && (
         <BoardLine
           size={size}
-          gameResult={{ winner: "o", diagonal: "MAIN", direction: "D" }}
+          gameResult={{ winner: 'o', diagonal: 'MAIN', direction: 'D' }}
         />
       )}
     </View>

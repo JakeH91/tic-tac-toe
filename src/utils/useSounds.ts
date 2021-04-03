@@ -1,8 +1,8 @@
-import { useRef, useEffect } from "react";
-import { Audio } from "expo-av";
-import * as Haptics from "expo-haptics";
+import { useRef, useEffect } from 'react';
+import { Audio } from 'expo-av';
+import * as Haptics from 'expo-haptics';
 
-type SoundType = "pop1" | "pop2" | "win" | "loss" | "draw";
+type SoundType = 'pop1' | 'pop2' | 'win' | 'loss' | 'draw';
 
 export default function useSounds(): (sound: SoundType) => void {
   const pop1SoundRef = useRef<Audio.Sound | null>(null);
@@ -24,17 +24,17 @@ export default function useSounds(): (sound: SoundType) => void {
       const status = await soundsMap[sound].current?.getStatusAsync();
       status && status.isLoaded && soundsMap[sound].current?.replayAsync();
       switch (sound) {
-        case "pop1":
-        case "pop2":
+        case 'pop1':
+        case 'pop2':
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           break;
-        case "win":
+        case 'win':
           Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
           break;
-        case "loss":
+        case 'loss':
           Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
           break;
-        case "draw":
+        case 'draw':
           Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
           break;
       }
@@ -53,23 +53,23 @@ export default function useSounds(): (sound: SoundType) => void {
 
     const loadSounds = async () => {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      await pop1SoundObject.loadAsync(require("@assets/pop_1.wav"));
+      await pop1SoundObject.loadAsync(require('@assets/pop_1.wav'));
       pop1SoundRef.current = pop1SoundObject;
 
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      await pop2SoundObject.loadAsync(require("@assets/pop_2.wav"));
+      await pop2SoundObject.loadAsync(require('@assets/pop_2.wav'));
       pop2SoundRef.current = pop2SoundObject;
 
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      await winSoundObject.loadAsync(require("@assets/win.mp3"));
+      await winSoundObject.loadAsync(require('@assets/win.mp3'));
       winSoundRef.current = winSoundObject;
 
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      await lossSoundObject.loadAsync(require("@assets/loss.mp3"));
+      await lossSoundObject.loadAsync(require('@assets/loss.mp3'));
       lossSoundRef.current = lossSoundObject;
 
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      await drawSoundObject.loadAsync(require("@assets/draw.mp3"));
+      await drawSoundObject.loadAsync(require('@assets/draw.mp3'));
       drawSoundRef.current = drawSoundObject;
     };
     loadSounds();

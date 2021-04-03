@@ -1,15 +1,15 @@
-import { BoardState, Moves, WinningRowOrColumn } from "@utils";
-import { BoardResult } from "./types";
+import { BoardState, Moves, WinningRowOrColumn } from '@utils';
+import { BoardResult } from './types';
 
 export const printFormattedBoard = (state: BoardState): void => {
-  let formattedString = "";
+  let formattedString = '';
   state.forEach((cell, index) => {
-    formattedString += cell ? ` ${cell} |` : "   |";
+    formattedString += cell ? ` ${cell} |` : '   |';
     if (index % 3 === 2) {
       formattedString = formattedString.slice(0, -1);
       if (index < 8) {
         formattedString +=
-          "\n\u2015\u2015\u2015 \u2015\u2015\u2015 \u2015\u2015\u2015\n";
+          '\n\u2015\u2015\u2015 \u2015\u2015\u2015 \u2015\u2015\u2015\n';
       }
     }
   });
@@ -61,14 +61,14 @@ export const isTerminal = (state: BoardState): BoardResult | false => {
         winner: state[cell1],
       };
       if (i < 3) {
-        result.direction = "H";
+        result.direction = 'H';
         result.row = (i + 1) as WinningRowOrColumn;
       } else if (i < 6) {
-        result.direction = "V";
+        result.direction = 'V';
         result.column = (i - 2) as WinningRowOrColumn;
       } else {
-        result.direction = "D";
-        result.diagonal = i === 6 ? "MAIN" : "COUNTER";
+        result.direction = 'D';
+        result.diagonal = i === 6 ? 'MAIN' : 'COUNTER';
       }
 
       return result;
