@@ -12,6 +12,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
     textDecorationLine: 'underline',
   },
+  forgotPasswordLink: {
+    color: colors.lightGreen,
+    textAlign: 'right',
+    fontSize: 12,
+    marginTop: -15,
+    marginBottom: 30,
+    textDecorationLine: 'underline',
+  },
 });
 
 export default styles;
